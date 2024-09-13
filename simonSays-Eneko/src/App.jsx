@@ -81,10 +81,12 @@ function App() {
         setSuccess(success+1);
       } else {
         const index = sequence[pulses-1]
-        if (index) colors[index].red.current.style.opacity = 1;
+        if (index) colors[index].ref.current.style.opacity = 1;
         play({id: 'error'})
         setTimeout(() => {
-          if (index) colors[index].red.current.style.opacity = 0.5;
+          if (index) colors[index].ref.current.style.opacity = 0.5;
+          console.log("SE PONE EN FALSE");
+          
           setIsGameOn(false); 
         }, speed * 2)
         setIsAllowedToPlay(false);             
@@ -114,8 +116,24 @@ function App() {
         randomNumber();
       }, 500);
     }
-  })
-  
+  }, [success])
+
+  useEffect(() => {
+    if (!isAllowedToPlay) {
+      sequence.map((item,index) => { 
+        setTimeout(() => {
+          play({id: colors[item].sound})
+          colors[item].ref.current.style.opacity = (1);
+          setTimeout(() => {
+            colors[item].ref.current.style.opacity = (0.5);
+            
+          }, speed/2);
+        }, speed * index);
+      })
+    } 
+    setIsAllowedToPlay(true);
+  },[sequence])
+
   const initGame = () => {
     randomNumber();
     setIsGameOn(true);
@@ -127,7 +145,7 @@ function App() {
     ?
     <>
     <div className='header'>
-      <h1>Turn {turn}</h1>
+      <h1 className='medieval-title'>Turn {turn}</h1>
     </div>
       <div className='container'>
         
@@ -148,9 +166,9 @@ function App() {
     :
       <>
         <div className='header'>
-          <h1>SUPER POTIONS</h1>
+          <h1 className='medieval-title'>SUPER POTIONS</h1>
         </div>
-        <button onClick={initGame}>START</button>
+        <button className='medieval-button' onClick={initGame}>START</button>
       </>
     }
     </>

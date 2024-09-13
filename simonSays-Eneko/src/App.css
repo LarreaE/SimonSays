@@ -5,13 +5,61 @@
   text-align: center;
 }
 
+.medieval-title {
+  font-family: 'Uncial Antiqua', serif; /* Use a medieval font */
+  font-size: 48px; /* Large size for a grand feel */
+  color: #d4af37; /* Gold-like color for a royal look */
+  text-align: center; /* Centered title */
+  letter-spacing: 3px; /* Wide spacing for a noble effect */
+  text-transform: uppercase; /* Uppercase letters for a medieval scroll look */
+  text-shadow: 2px 2px 5px #000, 0px -1px 1px #8b4513; /* Shadow for engraved look */
+  border-bottom: 5px solid #8b4513; /* Bottom border to resemble a carved line or banner */
+  padding-bottom: 10px; /* Space between title and border */
+  margin: 20px auto; /* Space around the title */
+  width: fit-content; /* Auto width for centered text */
+}
+
+.medieval-title:hover {
+  color: #f0e68c; /* Slightly lighter gold color on hover */
+  text-shadow: 3px 3px 7px #000, 0px -2px 2px #654321; /* Enhance shadow for hover effect */
+}
+
+
+.medieval-button {
+  background-color: #8B4513; /* Leather-like brown background */
+  color: #f0e6d2; /* Light parchment color for text */
+  border: 4px solid #654321; /* Darker brown border to resemble leather stitching */
+  padding: 10px 30px; /* Spacious padding for a royal look */
+  font-family: 'Cinzel', serif; /* Use a medieval-style font, e.g., Cinzel */
+  font-size: 18px; /* Larger text for readability */
+  text-transform: uppercase; /* Medieval-style buttons often use all caps */
+  letter-spacing: 2px; /* Slight spacing for a royal feel */
+  border-radius: 12px; /* Soft rounded edges for a worn-out look */
+  box-shadow: 0 4px 0 #5e3610, 0 6px 8px rgba(0, 0, 0, 0.5); /* 3D effect with a shadow */
+  cursor: pointer;
+  text-shadow: 1px 1px 2px #000; /* Slight shadow to make the text stand out */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.medieval-button:hover {
+  background-color: #A0522D; /* Lighter brown on hover */
+  box-shadow: 0 6px 0 #5e3610, 0 8px 12px rgba(0, 0, 0, 0.6); /* Enhance shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.medieval-button:active {
+  background-color: #5e3610; /* Darken on click */
+  box-shadow: 0 2px 0 #3b200b, 0 4px 6px rgba(0, 0, 0, 0.6); /* Shorter shadow on click */
+  transform: translateY(0); /* Button goes back down on click */
+}
+
+
 .container {
   display: flex;
   flex-wrap: wrap;
   width: 600px;
   height: 600px;
-  background-color: black;
-  padding: 30px;
+  padding: 300px;
   border-radius: 320px;
 }
 
@@ -19,37 +67,53 @@
   position: absolute;
   border-radius: 300px;
   background-color: black;
-  width: 600px;
+  width: 000px;
   height: 600px;
 }
 
 .pad {
-  width: 250px;
+  width: 100px; /* Width of the potion base */
+  height: 150px; /* Height of the potion base */
   margin: 25px;
+  display: inline-block;
+  position: relative;
+  background-color: #4a90e2; /* Potion color (blue) */
+  border: 5px solid #000; /* Thick border to create a pixel-art look */
+  box-sizing: border-box; /* Ensure border doesn't affect size */
 }
-.pad:hover {
-  cursor: pointer;
+
+/* The "neck" of the potion glass */
+.pad::before {
+  content: '';
+  position: absolute;
+  top: -30px; /* Position the neck on top of the base */
+  left: 20px; /* Center it horizontally */
+  width: 60px; /* Narrower neck of the bottle */
+  height: 30px; /* Short neck height */
+  background-color: #4a90e2; /* Same color as the potion */
+  border: 5px solid #000; /* Black border to mimic pixel art edges */
+  box-sizing: border-box;
 }
-.pad-0{
-  border-top-left-radius: 300px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+
+/* The pixel-like "cap" of the potion glass */
+.pad::after {
+  content: '';
+  position: absolute;
+  top: -50px; /* Position above the neck */
+  left: 15px; /* Center horizontally */
+  width: 70px; /* Slightly wider than the neck */
+  height: 20px; /* Shorter height for the cap */
+  background-color: #d9d9d9; /* Cap color (gray) */
+  border: 5px solid #000; /* Black border */
+  box-sizing: border-box;
 }
-.pad-1{
-  border-top-left-radius: 20px;
-  border-top-right-radius: 300px;
-  border-bottom-right-radius: 20px;
+
+/* The base of the potion glass is identical for all parts */
+.pad-0, .pad-1, .pad-2, .pad-3 {
+  /* No border-radius for pixel art - keep sharp edges */
+  border-radius: 0;
 }
-.pad-2{
-  border-bottom-left-radius: 300px;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-.pad-3{
-  border-bottom-right-radius: 300px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
