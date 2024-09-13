@@ -118,6 +118,45 @@ function App() {
     }
   }, [success])
 
+  //dificulty increment
+
+  const [position, setPosition] = useState({ x: 0, y: 0 }); 
+
+    // if (success > 2 && sequence.length === success) {
+    //   sequence.map((item,index) => {         
+
+    //     let randX = Math.floor(Math.random() * 300);
+    //     let randY = Math.floor(Math.random() * 300);
+
+    //     colors[item].ref.current.style.transform = `translate(${randX}px, ${0}px`;
+    //   })
+    // } 
+    if (success > 1 && sequence.length === success) {
+         
+      let rand1 = Math.floor(Math.random() * 3);
+      let rand2 = Math.floor(Math.random() * 3);
+
+      while (rand1 === rand2) {
+        rand1 = Math.floor(Math.random() * 3);
+      }
+      
+      let position1 = colors[rand1].ref.current.style.left;
+      let position2 = colors[rand2].ref.current.style.left;
+
+
+      console.log( colors[rand1].ref.current);
+      
+      console.log(position1);
+      console.log(colors);
+      
+      console.log(colors[rand1]);
+      
+      colors[rand1].ref.current.style.transform = `translate(${100}px, ${0}px`;
+      colors[rand2].ref.current.style.transform = `translate(${100}px, ${0}px`;
+
+
+    } 
+
   useEffect(() => {
     if (!isAllowedToPlay) {
       sequence.map((item,index) => { 
@@ -156,6 +195,7 @@ function App() {
              ref={item.ref}
              className={`pad pad-${index}`}
              style={{backgroundColor: `${item.color}`, opacity: 0.6 }}
+
              onClick={() => handleClick(index)}
             >
             </div>
